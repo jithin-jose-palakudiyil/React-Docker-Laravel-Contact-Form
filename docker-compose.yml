@@ -1,6 +1,6 @@
 version: '3.8' 
 services:
-  lrp_api:
+  rdl_api:
     build: API/
     volumes:
       - ./API:/app/api 
@@ -8,7 +8,7 @@ services:
       - 8000:8000
     networks:
       - application
-  lrp_ui:
+  rdl_ui:
     build: 
       context: UI/
       dockerfile: Dockerfile 
@@ -17,7 +17,7 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - lrp_api
+      - rdl_api
     networks:
       - application 
     environment:
