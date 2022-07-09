@@ -1,0 +1,29 @@
+version: '3.8' 
+services:
+  lrp_api:
+    build: API/
+    volumes:
+      - ./API:/app/api 
+    ports:
+      - 8000:8000
+    networks:
+      - application
+  lrp_ui:
+    build: 
+      context: UI/
+      dockerfile: Dockerfile 
+    volumes:
+      - ./UI:/app/ui 
+    ports:
+      - 3000:3000
+    depends_on:
+      - lrp_api
+    networks:
+      - application 
+    environment:
+      - WATCHPACK_POLLING=true
+networks:
+  application:
+    driver: bridge   
+
+     
